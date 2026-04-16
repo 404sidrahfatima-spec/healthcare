@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+crewai
+crewai-tools
+langchain
+pydantic
+pydantic-settings
+python-multipart
+modal
+supabase
+python-jose[cryptography]
+langchain-groq

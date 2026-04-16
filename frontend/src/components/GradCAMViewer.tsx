@@ -17,7 +17,9 @@ export const GradCAMViewer: React.FC<GradCAMViewerProps> = ({ originalImage, hea
       <div className="flex flex-col lg:flex-row gap-8 items-center">
         
         <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-black max-w-sm shadow-inner group">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={originalImage} alt="Clinical Base" className="absolute inset-0 w-full h-full object-cover" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={heatmapUrl} 
             alt="Activation Heatmap" 

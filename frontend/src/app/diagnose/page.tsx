@@ -12,6 +12,7 @@ export default function DiagnosePage() {
   const [language, setLanguage] = useState("english");
   const [audioFile, setAudioFile] = useState<File | null>(null);
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [result, setResult] = useState<any | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,8 +36,8 @@ export default function DiagnosePage() {
 
       const responseSet = await diagnosePipeline(formData);
       setResult(responseSet);
-    } catch (err: any) {
-      setError(err.message || "An unexpected error occurred during execution.");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "An unexpected error occurred during execution.");
     } finally {
       setLoading(false);
     }
@@ -127,7 +128,7 @@ export default function DiagnosePage() {
                   </div>
                   
                   <div className="space-y-3 text-sm">
-                    {result.agent_reasoning.map((agent: any, idx: number) => (
+                    {result.agent_reasoning.map((agent: { agent_name: string; confidence: number; findings: string }, idx: number) => (
                       <details key={idx} className="bg-zinc-50 dark:bg-zinc-800 border p-4 rounded-xl cursor-pointer">
                         <summary className="font-bold flex justify-between items-center">
                           <span className="text-zinc-900 dark:text-zinc-100">{agent.agent_name} Node</span>
